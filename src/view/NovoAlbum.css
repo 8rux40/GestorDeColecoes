@@ -1,0 +1,60 @@
+/**
+ * FXML Stylesheet
+ *
+ * @author 8rux40 
+ * @github https://github.com/8rux40
+ */
+
+.mainFxmlClass {
+    -fx-background-color: linear-gradient(#444, #000);
+}
+
+.txtField {
+    -fx-background-color: rgba(0,0,0,.6);
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #fe2280;
+}
+
+.default-button{
+    -fx-background-color: #fe2280;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.cancel-button{
+    -fx-padding: 8px 10px 8px 10px; 
+}
+ 
+.cancel-button:hover{
+    -fx-background-color: grey;
+}
+
+.check-box {
+    -fx-cursor: hand;
+}
+
+.check-box .box {
+    -fx-background-color: black;
+    -fx-border-color:#fe2280;
+    -fx-border-radius:3px; 
+    -fx-width: 25px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #fe2280;
+}
