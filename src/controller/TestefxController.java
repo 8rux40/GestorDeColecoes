@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -78,7 +79,7 @@ public class TestefxController implements Initializable {
     }
     
     private void novoAlbum(){
-        
+        Util.chamarTela(getClass().getResource("/view/NovoAlbum.fxml"));
     }
     
     private void ativaDesativaFiltro(CheckBox cbFiltro, Label filtroLbl){
@@ -144,6 +145,11 @@ public class TestefxController implements Initializable {
     @FXML
     private void onFiltroK7Clicked(MouseEvent event) {
         ativaDesativaFiltro(cbK7, filtroK7);
+    }
+
+    @FXML
+    private void onBtnNovoAlbumAction(ActionEvent event) {
+        novoAlbum();
     }
     
 }

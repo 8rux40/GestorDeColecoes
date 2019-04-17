@@ -173,7 +173,7 @@
                         <String fx:value="btn" />
                      </styleClass>
                   </Label>
-                  <Button fx:id="btnNovoAlbum" layoutX="788.0" layoutY="32.0" mnemonicParsing="false" styleClass="btn" text="Novo Álbum">
+                  <Button fx:id="btnNovoAlbum" layoutX="788.0" layoutY="32.0" mnemonicParsing="false" onAction="#onBtnNovoAlbumAction" prefWidth="141.0" styleClass="btn" text="Novo Álbum">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
