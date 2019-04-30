@@ -60,7 +60,7 @@ public class AlbumListCell extends ListCell<Album> {
         );
         
         descricao.setStyle("-fx-padding: 0px 0px 0px 20px;");
-        descricao.setPrefWidth(618);
+        descricao.setPrefWidth(605);
         botoes.setPrefWidth(25);
         btnDelete.setPrefSize(25, 25);
         btnEdit.setPrefSize(25, 25);

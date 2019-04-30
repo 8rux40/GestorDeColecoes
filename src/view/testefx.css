@@ -24,6 +24,15 @@
     -fx-block-increment: 20;
 }
 
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar > .thumb {
+    -fx-background-color: #444;
+    -fx-border: none;
+}
+
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-background-insets: 0;

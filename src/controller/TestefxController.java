@@ -94,6 +94,7 @@ public class TestefxController implements Initializable {
         midiasDisponiveis.add(Album.Vinil);
         lista.add(new Album("Ainda Há Tempo", "Criolo", 2010, midiasDisponiveis, new Image("./view/img/capa/aindahatempo.jpg")));
         lista.add(new Album("Multitudes", "Illapu", 1990, midiasDisponiveis, new Image("./view/img/capa/illapu-multitudes.png")));
+        lista.add(new Album("A Invasão do Sagaz Homem Fumaça", "Planet Hemp", 2000, midiasDisponiveis, new Image("./view/img/capa/planethemp-ainvasaodosagazhomemfumaca.jpg")));
         return lista;
     }
     
