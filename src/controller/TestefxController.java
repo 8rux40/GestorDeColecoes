@@ -1,6 +1,8 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,13 +10,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import model.entity.Album;
+import model.util.AlbumListCell;
 
 /**
  * FXML Controller class
@@ -64,11 +70,32 @@ public class TestefxController implements Initializable {
     private Label filtroBluray;
     @FXML
     private Label filtroK7;
+    @FXML
+    private ListView<Album> lvAlbuns;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        gerarItensDaLista();
     }    
+    
+    private void gerarItensDaLista(){
+        lvAlbuns.setCellFactory(param -> new AlbumListCell());
+        lvAlbuns.setPrefHeight(180);
+        lvAlbuns.getItems().setAll(carregaListaAlbuns());
+    }
+    
+    private List<Album> carregaListaAlbuns(){
+        /*
+            PEGAR LISTA DE ALBUNS CADASTRADOS DO BD
+        */
+        List<Album> lista = new ArrayList<>();
+        List<Integer> midiasDisponiveis = new ArrayList<>();
+        midiasDisponiveis.add(Album.CD);
+        midiasDisponiveis.add(Album.Vinil);
+        lista.add(new Album("Ainda Há Tempo", "Criolo", 2010, midiasDisponiveis, new Image("./view/img/capa/aindahatempo.jpg")));
+        lista.add(new Album("Multitudes", "Illapu", 1990, midiasDisponiveis, new Image("./view/img/capa/illapu-multitudes.png")));
+        return lista;
+    }
     
     private void removerAlbum(){
         

@@ -90,7 +90,6 @@
     -fx-text-fill: black;
 }
 
-
 .btn {
     -fx-cursor:hand;
 }
@@ -119,3 +118,38 @@
     -fx-background-image: url(img/delete-24.png);
 }
 
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.list-cell:hover {
+    -fx-background-color: rgba(0,0,0,.2);
+}
+
+.album-capa{
+    -fx-effect: dropshadow(gaussian, black, 24.5, 0.05, 0, 0);
+}
+
+.album-titulo {
+    -fx-font-family: "System";
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.album-artista{
+    -fx-font-weight: bold;
+}
+
+.album-ano {
+    -fx-padding: 0px 0px 10px 0px;
+}
+
+.text, label {
+    -fx-text-fill: white;
+}

@@ -3,11 +3,15 @@ package controller;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 /**
+ * FXML Controller class
  *
- * @author btardin
+ * @author 8rux40 
+ * @github https://github.com/8rux40
  */
 public class Util {
     public static void chamarTela(URL telaUrl) {
@@ -24,5 +28,13 @@ public class Util {
     }
     public static void fechaJanela(Stage stage){
         stage.close();
+    }
+    public static void mostraAlerta(String title, String header, String content, AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        
+        alert.show();
     }
 }
