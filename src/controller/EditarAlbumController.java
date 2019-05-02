@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.net.URL;
@@ -14,11 +9,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import model.entity.Album;
+import model.util.AlbumListCell;
 
 /**
  * FXML Controller class
  *
- * @author btardin
+ * @author 8rux40 
+ * @github https://github.com/8rux40
  */
 public class EditarAlbumController implements Initializable {
 
@@ -52,8 +51,37 @@ public class EditarAlbumController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Album a = AlbumListCell.getAlbumSelecionado();
+        if (a != null) {
+            preencheInformacoes(a);
+        }
     }    
+    
+    private void preencheInformacoes(Album a){
+        txtArtista.setText(a.getArtista());
+        txtTitulo.setText(a.getTitulo());
+        txtAno.setText(String.format("%d", a.getAnoLancamento()));
+        for (Integer midia : a.getMidiasDisponiveis()){
+            switch(midia){
+                case Album.CD:{
+                    cbCd.setSelected(true);
+                } break;
+                case Album.DVD:{
+                    cbDvd.setSelected(true);
+                } break;
+                case Album.BluRay:{
+                    cbBluray.setSelected(true);
+                } break;
+                case Album.Vinil:{
+                    cbVinil.setSelected(true);
+                } break;
+                case Album.K7:{
+                    cbK7.setSelected(true);
+                } break;
+            }
+        }
+        capa.setImage(a.getCapa());
+    }
 
     @FXML
     private void onBtnUploadAction(ActionEvent event) {
@@ -65,6 +93,8 @@ public class EditarAlbumController implements Initializable {
 
     @FXML
     private void onBtnCancelarAction(ActionEvent event) {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
     
 }

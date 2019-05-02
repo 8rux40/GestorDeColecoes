@@ -1,5 +1,7 @@
 package model.util;
 
+import controller.TestefxController;
+import controller.Util;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -29,6 +31,8 @@ public class AlbumListCell extends ListCell<Album> {
     private Button btnEdit;
     
     private HBox midias;
+    
+    private static Album albumSelecionado;
 
     public AlbumListCell() {
         super();
@@ -96,16 +100,32 @@ public class AlbumListCell extends ListCell<Album> {
             setPrefWidth(200);
             
             btnDelete.setOnAction((t) -> {
-                System.out.println(item.getTitulo());
+                TestefxController.removerAlbum(item);
             });
             
             btnEdit.setOnAction((t) -> {
-                System.out.println(item.getTitulo());
+                editarAlbum(item);
             });
 
         } else {
             setGraphic(null);
         }
+    }
+    
+    private void setAlbumSelecionado(Album a){
+        albumSelecionado = a;
+    }
+    
+    public static Album getAlbumSelecionado(){
+        return albumSelecionado;
+    }
+    
+    private void editarAlbum(Album a){
+        /*
+            Abre tela de edição
+        */
+        setAlbumSelecionado(a);
+        Util.chamarTela(getClass().getResource("/view/EditarAlbum.fxml"));
     }
 
     private void atualizaCapa(Image image) {

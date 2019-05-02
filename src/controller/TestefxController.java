@@ -41,7 +41,7 @@ public class TestefxController implements Initializable {
     @FXML
     private CheckBox cbCd;
     @FXML
-    private Button btnNovoAlbum;
+    private static Button btnNovoAlbum;
     @FXML
     private CheckBox cbDvd;
     @FXML
@@ -73,6 +73,8 @@ public class TestefxController implements Initializable {
     @FXML
     private ListView<Album> lvAlbuns;
     
+    private static Album albumSelecionado;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gerarItensDaLista();
@@ -98,12 +100,17 @@ public class TestefxController implements Initializable {
         return lista;
     }
     
-    private void removerAlbum(){
-        
+    public static void removerAlbum(Album a){
+        /*
+            REMOVER ALBUM DAO
+        */
     }
     
-    private void editarAlbum(){
-        
+    public static void editarAlbum(Album a){
+        /*
+            Abre tela de edição
+        */
+        Util.chamarTela(btnNovoAlbum.getClass().getResource("/view/EditarAlbum.fxml"));
     }
     
     private void novoAlbum(){
