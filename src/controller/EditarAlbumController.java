@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,17 +94,39 @@ public class EditarAlbumController implements Initializable {
     }
     
     private void atualizaCapaAtual(File f){
+        Image img;
         try {
             System.out.println(f.getCanonicalPath());
         } catch (IOException ex) {
             Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Image img;
         try {
             img = new Image(new FileInputStream(f.getAbsolutePath()));
             capa.setImage(img);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private Album getAlbumAtualizado(){
+        Album a = null;
+        try {
+            a = new Album();
+            a.setArtista(txtArtista.getText());
+            a.setAnoLancamento(Integer.parseInt(txtAno.getText()));
+            a.setTitulo(a.getTitulo());
+            
+            List<Integer> midias = new ArrayList<>();
+            if (cbCd.isSelected()) midias.add(Album.CD);
+            if (cbDvd.isSelected()) midias.add(Album.DVD);
+            if (cbBluray.isSelected()) midias.add(Album.BluRay);
+            if (cbVinil.isSelected()) midias.add(Album.Vinil);
+            if (cbK7.isSelected()) midias.add(Album.K7);
+            a.setMidiasDisponiveis(midias);
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+        } finally {
+            return a;
         }
     }
 
@@ -131,6 +155,11 @@ public class EditarAlbumController implements Initializable {
         /*
             EDITAR DAO
         */
+        Album albumAtualizado = getAlbumAtualizado();
+        if (albumAtualizado != null){
+            // mandar para o BD
+        }
+        
     }
 
     @FXML
