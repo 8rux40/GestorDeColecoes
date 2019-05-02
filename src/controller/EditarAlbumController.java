@@ -1,14 +1,22 @@
 package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.entity.Album;
 import model.util.AlbumListCell;
@@ -82,13 +90,47 @@ public class EditarAlbumController implements Initializable {
         }
         capa.setImage(a.getCapa());
     }
+    
+    private void atualizaCapaAtual(File f){
+        try {
+            System.out.println(f.getCanonicalPath());
+        } catch (IOException ex) {
+            Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Image img;
+        try {
+            img = new Image(new FileInputStream(f.getAbsolutePath()));
+            capa.setImage(img);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     private void onBtnUploadAction(ActionEvent event) {
+        /*
+            CAIXA DE DIALOGO PARA TROCAR A IMAGEM DE CAPA
+        */
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Escolha uma nova imagem para ser capa do Álbum");
+        fc.setInitialDirectory(new File(System.getProperty("user.home")));
+        fc.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+            new FileChooser.ExtensionFilter("PNG", "*.png"),
+            new FileChooser.ExtensionFilter("JPEG", "*.jpeg")
+        );
+        File f = fc.showOpenDialog(btnUpload.getScene().getWindow());
+        if (f != null){
+            System.out.println(f);
+            atualizaCapaAtual(f);
+        }
     }
 
     @FXML
     private void onBtnConfirmarAction(ActionEvent event) {
+        /*
+            EDITAR DAO
+        */
     }
 
     @FXML
