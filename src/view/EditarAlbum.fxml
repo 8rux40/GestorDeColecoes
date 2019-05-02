@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="290.0" prefWidth="658.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditarAlbumController">
+    <stylesheets>
+        <URL value="@NovoAlbum.css" />
+    </stylesheets>
+   <children>
+      <TextField fx:id="txtTitulo" layoutX="186.0" layoutY="41.0" prefHeight="34.0" prefWidth="452.0" promptText="Ex: Babylon By Gus I: Ano do Macaco" styleClass="txtField">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtArtista" layoutX="186.0" layoutY="112.0" prefHeight="34.0" prefWidth="383.0" promptText="Black Alien" styleClass="txtField">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="189.0" layoutY="20.0" text="Título" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="189.0" layoutY="89.0" text="Artista, Banda, Grupo" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="capa" fitHeight="157.0" fitWidth="146.0" layoutX="22.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/album-256.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnUpload" layoutX="27.0" layoutY="181.0" mnemonicParsing="false" onAction="#onBtnUploadAction" prefHeight="28.0" prefWidth="132.0" text="Mudar Capa" />
+      <Pane layoutX="186.0" layoutY="182.0" prefHeight="49.0" prefWidth="452.0" styleClass="txtField">
+         <children>
+            <CheckBox fx:id="cbCd" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" text="CD" textFill="WHITE" />
+            <CheckBox fx:id="cbDvd" layoutX="98.0" layoutY="14.0" mnemonicParsing="false" text="DVD" textFill="WHITE" />
+            <CheckBox fx:id="cbVinil" layoutX="191.0" layoutY="14.0" mnemonicParsing="false" text="Vinil" textFill="WHITE" />
+            <CheckBox fx:id="cbBluray" layoutX="286.0" layoutY="14.0" mnemonicParsing="false" text="BluRay" textFill="WHITE" />
+            <CheckBox fx:id="cbK7" layoutX="392.0" layoutY="14.0" mnemonicParsing="false" text="K7" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Label layoutX="189.0" layoutY="157.0" text="Mídias disponíveis" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnConfirmar" defaultButton="true" layoutX="506.0" layoutY="245.0" mnemonicParsing="false" onAction="#onBtnConfirmarAction" prefHeight="28.0" prefWidth="132.0" styleClass="default-button" text="Confirmar" />
+      <Button fx:id="btnCancelar" cancelButton="true" layoutX="380.0" layoutY="244.0" mnemonicParsing="false" onAction="#onBtnCancelarAction" prefHeight="25.0" prefWidth="116.0" styleClass="cancel-button" text="Cancelar" />
+      <TextField fx:id="txtAno" layoutX="577.0" layoutY="112.0" prefHeight="34.0" prefWidth="61.0" promptText="2004" styleClass="txtField">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="580.0" layoutY="89.0" text="Ano" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

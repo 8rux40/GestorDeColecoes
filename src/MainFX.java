@@ -18,8 +18,8 @@ public class MainFX extends Application {
             Parent parent = (Parent) FXMLLoader.load(getClass().getResource("/view/testefx.fxml"));
             scene = new Scene(parent);
             primaryStage.setScene(scene);
-            primaryStage.setMaximized(true);
-//            primaryStage.setResizable(false);
+//            primaryStage.setMaximized(true);
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
