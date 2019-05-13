@@ -1,11 +1,12 @@
 package model.entity;
 
-import java.util.List;
+import java.util.Objects;
 import javafx.scene.image.Image;
 
 /**
  *
  * @author 8rux40
+ * @github https://github.com/8rux40
  */
 public class Album {
     // Enumeração dos tipos de mídia disponíveis
@@ -18,17 +19,15 @@ public class Album {
     private String titulo;
     private String artista;
     private Integer anoLancamento;
-    private List<Integer> midiasDisponiveis;
     private Image capa;
 
     public Album() {
     }
     
-    public Album(String titulo, String artista, Integer anoLancamento, List<Integer> midiasDisponiveis, Image capa) {
+    public Album(String titulo, String artista, Integer anoLancamento, Image capa) {
         this.titulo = titulo;
         this.artista = artista;
         this.anoLancamento = anoLancamento;
-        this.midiasDisponiveis = midiasDisponiveis;
         this.capa = capa;
     }
 
@@ -56,14 +55,6 @@ public class Album {
         this.anoLancamento = anoLancamento;
     }
 
-    public List<Integer> getMidiasDisponiveis() {
-        return midiasDisponiveis;
-    }
-
-    public void setMidiasDisponiveis(List<Integer> midiasDisponiveis) {
-        this.midiasDisponiveis = midiasDisponiveis;
-    }
-
     public Image getCapa() {
         return capa;
     }
@@ -71,5 +62,48 @@ public class Album {
     public void setCapa(Image capa) {
         this.capa = capa;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.titulo);
+        hash = 97 * hash + Objects.hashCode(this.artista);
+        hash = 97 * hash + Objects.hashCode(this.anoLancamento);
+        hash = 97 * hash + Objects.hashCode(this.capa);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Album other = (Album) obj;
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.artista, other.artista)) {
+            return false;
+        }
+        if (!Objects.equals(this.anoLancamento, other.anoLancamento)) {
+            return false;
+        }
+        if (!Objects.equals(this.capa, other.capa)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" + "titulo=" + titulo + ", artista=" + artista + ", anoLancamento=" + anoLancamento + ", capa=" + capa + '}';
+    }
+    
     
 }
