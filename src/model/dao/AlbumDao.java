@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.List;
 import model.entity.Album;
 
 /**
@@ -12,6 +13,6 @@ public interface AlbumDao {
     public void update(Album album);
     public void delete(Album album);
     public void deleteById(int id);
-    public void findById(int id);
-    public void findAll();
+    public Album findById(int id);
+    public List<Album> findAll();
 }

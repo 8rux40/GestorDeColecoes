@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.List;
 import model.entity.Album;
 import model.entity.MidiasDisponiveis;
 import model.entity.TipoDeMidia;
@@ -14,7 +15,6 @@ public interface MidiasDisponiveisDao {
     public void update(MidiasDisponiveis md);
     public void delete(MidiasDisponiveis md);
     public void deleteById(int id);
-    public void findByAlbum(Album a);
-    public void findByTipoDeMidia(TipoDeMidia tdm);
-    public void findAll();
+    public List<TipoDeMidia> findTipoDeMidiaByAlbum(Album a);
+    public List<Album> findAlbumByTipoDeMidia(TipoDeMidia tdm);
 }

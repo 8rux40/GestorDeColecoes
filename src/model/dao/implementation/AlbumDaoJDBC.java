@@ -1,6 +1,7 @@
 package model.dao.implementation;
 
 import java.sql.Connection;
+import java.util.List;
 import model.dao.AlbumDao;
 import model.entity.Album;
 
@@ -38,13 +39,15 @@ public class AlbumDaoJDBC implements AlbumDao{
     }
 
     @Override
-    public void findById(int id) {
+    public Album findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void findAll() {
+    public List<Album> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }

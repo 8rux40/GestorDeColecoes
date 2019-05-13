@@ -1,7 +1,9 @@
 package model.dao.implementation;
 
 import java.sql.Connection;
+import java.util.List;
 import model.dao.TipoDeMidiaDao;
+import model.entity.TipoDeMidia;
 
 /**
  *
@@ -15,14 +17,14 @@ public class TipoDeMidiaDaoJDBC implements TipoDeMidiaDao{
     public TipoDeMidiaDaoJDBC(Connection conn){
         this.conn = conn;
     }
-    
+
     @Override
-    public void findById(int id) {
+    public TipoDeMidia findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void findAll() {
+    public List<TipoDeMidia> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

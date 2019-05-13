@@ -1,6 +1,7 @@
 package model.dao.implementation;
 
 import java.sql.Connection;
+import java.util.List;
 import model.dao.MidiasDisponiveisDao;
 import model.entity.Album;
 import model.entity.MidiasDisponiveis;
@@ -40,18 +41,15 @@ public class MidiasDisponiveisDaoJDBC implements MidiasDisponiveisDao{
     }
 
     @Override
-    public void findByAlbum(Album a) {
+    public List<TipoDeMidia> findTipoDeMidiaByAlbum(Album a) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void findByTipoDeMidia(TipoDeMidia tdm) {
+    public List<Album> findAlbumByTipoDeMidia(TipoDeMidia tdm) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }
