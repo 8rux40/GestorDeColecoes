@@ -16,21 +16,51 @@ public class Album {
     public static final int BluRay = 4;
     public static final int K7     = 5;
     
+    private Integer id;
     private String titulo;
     private String artista;
     private Integer anoLancamento;
     private Image capa;
+    private String strCapa;
+    private Integer status;
 
     public Album() {
     }
     
-    public Album(String titulo, String artista, Integer anoLancamento, Image capa) {
+    public Album(Integer id, String titulo, String artista, Integer anoLancamento, String capa, Integer status) {
+        this.id = id;
         this.titulo = titulo;
         this.artista = artista;
         this.anoLancamento = anoLancamento;
-        this.capa = capa;
+        this.strCapa = capa;
+        this.status = status;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+    
+    public String getStrCapa() {
+        return strCapa;
+    }
+
+    public void setStrCapa(String strCapa) {
+        this.strCapa = strCapa;
+    }
+
+    
     public String getTitulo() {
         return titulo;
     }
@@ -65,11 +95,14 @@ public class Album {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.titulo);
-        hash = 97 * hash + Objects.hashCode(this.artista);
-        hash = 97 * hash + Objects.hashCode(this.anoLancamento);
-        hash = 97 * hash + Objects.hashCode(this.capa);
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.titulo);
+        hash = 17 * hash + Objects.hashCode(this.artista);
+        hash = 17 * hash + Objects.hashCode(this.anoLancamento);
+        hash = 17 * hash + Objects.hashCode(this.capa);
+        hash = 17 * hash + Objects.hashCode(this.strCapa);
+        hash = 17 * hash + Objects.hashCode(this.status);
         return hash;
     }
 
@@ -91,10 +124,19 @@ public class Album {
         if (!Objects.equals(this.artista, other.artista)) {
             return false;
         }
+        if (!Objects.equals(this.strCapa, other.strCapa)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.anoLancamento, other.anoLancamento)) {
             return false;
         }
         if (!Objects.equals(this.capa, other.capa)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
             return false;
         }
         return true;
@@ -102,7 +144,7 @@ public class Album {
 
     @Override
     public String toString() {
-        return "Album{" + "titulo=" + titulo + ", artista=" + artista + ", anoLancamento=" + anoLancamento + ", capa=" + capa + '}';
+        return "Album{" + "id=" + id + ", titulo=" + titulo + ", artista=" + artista + ", anoLancamento=" + anoLancamento + ", capa=" + capa + ", strCapa=" + strCapa + ", status=" + status + '}';
     }
     
     

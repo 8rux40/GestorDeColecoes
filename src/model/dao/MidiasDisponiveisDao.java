@@ -12,9 +12,7 @@ import model.entity.TipoDeMidia;
  */
 public interface MidiasDisponiveisDao {
     public void insert(MidiasDisponiveis md);
-    public void update(MidiasDisponiveis md);
     public void delete(MidiasDisponiveis md);
-    public void deleteById(int id);
     public List<TipoDeMidia> findTipoDeMidiaByAlbum(Album a);
     public List<Album> findAlbumByTipoDeMidia(TipoDeMidia tdm);
 }
