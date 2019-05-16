@@ -8,6 +8,13 @@ import java.util.Objects;
  * @github https://github.com/8rux40
  */
 public class TipoDeMidia {
+    // Enumeração dos tipos de mídia disponíveis
+    public static final int CD     = 1;
+    public static final int DVD    = 2;
+    public static final int BluRay = 3;
+    public static final int Vinil  = 4;
+    public static final int K7     = 5;
+    
     private int id;
     private String descricao;
 

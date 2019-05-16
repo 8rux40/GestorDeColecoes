@@ -1,12 +1,17 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -19,6 +24,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import model.dao.AlbumDao;
+import model.dao.DaoFactory;
 import model.entity.Album;
 import model.util.AlbumListCell;
 
@@ -26,6 +35,7 @@ import model.util.AlbumListCell;
  * FXML Controller class
  *
  * @author 8rux40
+ * @github https://github.com/8rux40
  */
 public class TestefxController implements Initializable {
     @FXML
@@ -86,31 +96,37 @@ public class TestefxController implements Initializable {
         lvAlbuns.getItems().setAll(carregaListaAlbuns());
     }
     
+    
     private List<Album> carregaListaAlbuns(){
         /*
             PEGAR LISTA DE ALBUNS CADASTRADOS DO BD
         */
-        List<Album> lista = new ArrayList<>();
-        List<Integer> midiasDisponiveis = new ArrayList<>();
-        midiasDisponiveis.add(Album.CD);
-        midiasDisponiveis.add(Album.Vinil);
-        lista.add(new Album("Ainda Há Tempo", "Criolo", 2010, midiasDisponiveis, new Image("./view/img/capa/aindahatempo.jpg")));
-        lista.add(new Album("Multitudes", "Illapu", 1990, midiasDisponiveis, new Image("./view/img/capa/illapu-multitudes.png")));
-        lista.add(new Album("A Invasão do Sagaz Homem Fumaça", "Planet Hemp", 2000, midiasDisponiveis, new Image("./view/img/capa/planethemp-ainvasaodosagazhomemfumaca.jpg")));
-        return lista;
+        return DaoFactory.createAlbumDao().findAll();
     }
     
     public static void removerAlbum(Album a){
         /*
             REMOVER ALBUM DAO
         */
+        DaoFactory.createAlbumDao().delete(a);
     }
     
-    public static void editarAlbum(Album a){
-        /*
+    public void editarAlbum(Album a){
+        try {
+            /*
             Abre tela de edição
-        */
-        Util.chamarTela(btnNovoAlbum.getClass().getResource("/view/EditarAlbum.fxml"));
+            */
+//        Util.chamarTela(btnNovoAlbum.getClass().getResource("/view/EditarAlbum.fxml"));
+            FXMLLoader loader = new FXMLLoader(btnNovoAlbum.getClass().getResource("/view/EditarAlbum.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+            JOptionPane.showMessageDialog(null, "testse");
+            lvAlbuns.getItems().setAll(carregaListaAlbuns());
+        } catch (IOException ex) {
+            Logger.getLogger(TestefxController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void novoAlbum(){
@@ -149,7 +165,7 @@ public class TestefxController implements Initializable {
         ativaDesativaFiltro(false, filtroBluray);
         ativaDesativaFiltro(false, filtroK7);
     }
-
+   
     @FXML
     private void onFiltroTodasClicked(MouseEvent event) {
         rbTodas.setSelected(true);

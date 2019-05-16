@@ -20,7 +20,7 @@ public class Util {
             Scene scene = new Scene(loader.load());
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.show();
+            stage.showAndWait();
         } catch (Exception e) {
             System.out.println("Erro ao chamar tela! \n" + e.getMessage());
             e.printStackTrace();

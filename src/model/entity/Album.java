@@ -9,12 +9,7 @@ import javafx.scene.image.Image;
  * @github https://github.com/8rux40
  */
 public class Album {
-    // Enumeração dos tipos de mídia disponíveis
-    public static final int CD     = 1;
-    public static final int DVD    = 2;
-    public static final int Vinil  = 3;
-    public static final int BluRay = 4;
-    public static final int K7     = 5;
+
     
     private Integer id;
     private String titulo;
@@ -34,6 +29,7 @@ public class Album {
         this.anoLancamento = anoLancamento;
         this.strCapa = capa;
         this.status = status;
+        this.capa = new Image("./view/img/capa/"+capa);
     }
 
     public Integer getId() {

@@ -20,7 +20,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.dao.DaoFactory;
+import model.dao.MidiasDisponiveisDao;
+import model.dao.TipoDeMidiaDao;
 import model.entity.Album;
+import model.entity.MidiasDisponiveis;
+import model.entity.TipoDeMidia;
 import model.util.AlbumListCell;
 
 /**
@@ -56,6 +61,7 @@ public class EditarAlbumController implements Initializable {
     @FXML
     private TextField txtAno;
 
+    private Album albumSelecionado;
     /**
      * Initializes the controller class.
      */
@@ -68,24 +74,25 @@ public class EditarAlbumController implements Initializable {
     }    
     
     private void preencheInformacoes(Album a){
+        albumSelecionado = a;
         txtArtista.setText(a.getArtista());
         txtTitulo.setText(a.getTitulo());
         txtAno.setText(String.format("%d", a.getAnoLancamento()));
-        for (Integer midia : a.getMidiasDisponiveis()){
-            switch(midia){
-                case Album.CD:{
+        for (TipoDeMidia tdm : DaoFactory.createMidiasDisponiveisDao().findTipoDeMidiaByAlbum(a)){
+            switch(tdm.getId()){
+                case TipoDeMidia.CD:{
                     cbCd.setSelected(true);
                 } break;
-                case Album.DVD:{
+                case TipoDeMidia.DVD:{
                     cbDvd.setSelected(true);
                 } break;
-                case Album.BluRay:{
+                case TipoDeMidia.BluRay:{
                     cbBluray.setSelected(true);
                 } break;
-                case Album.Vinil:{
+                case TipoDeMidia.Vinil:{
                     cbVinil.setSelected(true);
                 } break;
-                case Album.K7:{
+                case TipoDeMidia.K7:{
                     cbK7.setSelected(true);
                 } break;
             }
@@ -114,15 +121,25 @@ public class EditarAlbumController implements Initializable {
             a = new Album();
             a.setArtista(txtArtista.getText());
             a.setAnoLancamento(Integer.parseInt(txtAno.getText()));
-            a.setTitulo(a.getTitulo());
+            a.setTitulo(txtTitulo.getText());
+            a.setStatus(1); // VER DEPOIS
+            a.setId(albumSelecionado.getId());
+            a.setStrCapa(albumSelecionado.getStrCapa()); // VER DEPOIS
             
-            List<Integer> midias = new ArrayList<>();
-            if (cbCd.isSelected()) midias.add(Album.CD);
-            if (cbDvd.isSelected()) midias.add(Album.DVD);
-            if (cbBluray.isSelected()) midias.add(Album.BluRay);
-            if (cbVinil.isSelected()) midias.add(Album.Vinil);
-            if (cbK7.isSelected()) midias.add(Album.K7);
-            a.setMidiasDisponiveis(midias);
+            MidiasDisponiveisDao dao = DaoFactory.createMidiasDisponiveisDao();
+            TipoDeMidiaDao tdmDao = DaoFactory.createTipoDeMidiaDao();
+            List<TipoDeMidia> midias = new ArrayList<>();
+            if (cbCd.isSelected()) midias.add(tdmDao.findById(TipoDeMidia.CD));
+            if (cbDvd.isSelected()) midias.add(tdmDao.findById(TipoDeMidia.DVD));
+            if (cbBluray.isSelected()) midias.add(tdmDao.findById(TipoDeMidia.BluRay));
+            if (cbVinil.isSelected()) midias.add(tdmDao.findById(TipoDeMidia.Vinil));
+            if (cbK7.isSelected()) midias.add(tdmDao.findById(TipoDeMidia.K7));
+            
+            dao.deleteAllByAlbum(albumSelecionado);
+            for (TipoDeMidia midia : midias){
+                dao.insert(new MidiasDisponiveis(a, midia));
+            }
+            
         } catch (Exception ex){
             System.out.println(ex.getMessage());
         } finally {
@@ -157,13 +174,17 @@ public class EditarAlbumController implements Initializable {
         */
         Album albumAtualizado = getAlbumAtualizado();
         if (albumAtualizado != null){
-            // mandar para o BD
+            DaoFactory.createAlbumDao().update(albumAtualizado);
         }
-        
+        fechaJanela();
     }
 
     @FXML
     private void onBtnCancelarAction(ActionEvent event) {
+        fechaJanela();
+    }
+    
+    private void fechaJanela(){
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }

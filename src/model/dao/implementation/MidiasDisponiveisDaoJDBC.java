@@ -73,6 +73,22 @@ public class MidiasDisponiveisDaoJDBC implements MidiasDisponiveisDao{
             DB.closeStatement(st);
         }
     }
+    
+    @Override
+    public void deleteAllByAlbum(Album a) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement(
+                " DELETE FROM MidiasDisponiveis WHERE Album_id = ?; "
+            );
+            st.setInt(1, a.getId());
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            throw new DbException(ex.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
+    }
 
     @Override
     public List<TipoDeMidia> findTipoDeMidiaByAlbum(Album a) {

@@ -12,11 +12,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.dao.DaoFactory;
 import model.entity.Album;
+import model.entity.TipoDeMidia;
 
 /**
  *
  * @author 8rux40
+ * @github https://github.com/8rux40
  */
 public class AlbumListCell extends ListCell<Album> {
 
@@ -92,7 +95,8 @@ public class AlbumListCell extends ListCell<Album> {
             atualizaTitulo(item.getTitulo());
             atualizaArtista(item.getArtista());
             atualizaAnoLancamento(item.getAnoLancamento());
-            atualizaMidias(item.getMidiasDisponiveis());
+            List<TipoDeMidia> midias = DaoFactory.createMidiasDisponiveisDao().findTipoDeMidiaByAlbum(item);
+            atualizaMidias(midias);
             setGraphic(content);
 
             setAlignment(Pos.CENTER_LEFT);
@@ -151,11 +155,9 @@ public class AlbumListCell extends ListCell<Album> {
         anoLancamento.getStyleClass().add("album-ano");
     }
     
-    private void atualizaMidias(List<Integer> midias){
-        String[] midia = {"CD","DVD", "Vinil", "BluRay", "K7"};
-        
-        for(Integer m : midias){
-            Label lblMidia = new Label(midia[m-1]);
+    private void atualizaMidias(List<TipoDeMidia> midias){
+        for(TipoDeMidia m : midias){
+            Label lblMidia = new Label(m.getDescricao());
             lblMidia.getStyleClass().add("etiqueta");
             this.midias.getChildren().add(lblMidia);
             this.midias.getChildren().add(new Label(" "));
