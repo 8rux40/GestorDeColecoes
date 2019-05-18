@@ -119,6 +119,12 @@
     -fx-background-color: transparent;
 }
 
+.btn-status {
+    -fx-background-image: url(img/edit-24.png); /* VER DEPOIS */
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+}
+
 .btn-edit:hover {
     -fx-background-image: url(img/edit-hover-24.png);
 }

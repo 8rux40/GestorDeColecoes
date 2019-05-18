@@ -32,6 +32,7 @@ public class AlbumListCell extends ListCell<Album> {
     
     private Button btnDelete;
     private Button btnEdit;
+    private Button btnStatus;
     
     private HBox midias;
     
@@ -45,6 +46,7 @@ public class AlbumListCell extends ListCell<Album> {
         imgCapa = new ImageView();
         btnDelete = new Button();
         btnEdit = new Button();
+        btnStatus = new Button();
         
         midias = new HBox();
                 
@@ -57,7 +59,8 @@ public class AlbumListCell extends ListCell<Album> {
         
         VBox botoes = new VBox(
             btnDelete,
-            btnEdit
+            btnEdit,
+            btnStatus    
         );
         
         content = new HBox(
@@ -71,6 +74,7 @@ public class AlbumListCell extends ListCell<Album> {
         botoes.setPrefWidth(25);
         btnDelete.setPrefSize(25, 25);
         btnEdit.setPrefSize(25, 25);
+        btnStatus.setPrefSize(25,25);
         anoLancamento.setStyle("-fx-padding: 5px 0px 0px 0px;");
         btnDelete.getStyleClass().add("btn");
         btnDelete.getStyleClass().add("btn-delete");
@@ -95,6 +99,7 @@ public class AlbumListCell extends ListCell<Album> {
             atualizaTitulo(item.getTitulo());
             atualizaArtista(item.getArtista());
             atualizaAnoLancamento(item.getAnoLancamento());
+            atualizaStatus(item.getStatus());
             List<TipoDeMidia> midias = DaoFactory.createMidiasDisponiveisDao().findTipoDeMidiaByAlbum(item);
             atualizaMidias(midias);
             setGraphic(content);
@@ -139,6 +144,14 @@ public class AlbumListCell extends ListCell<Album> {
         imgCapa.getStyleClass().add("album-capa");
     }
     
+    private void atualizaStatus(Integer status){
+        if (status != 0){
+            btnStatus.getStyleClass().add("btn-status");
+        } else {
+            btnStatus.visibleProperty().set(false);
+        }
+    }
+    
     private void atualizaTitulo(String titulo){
         this.titulo.setText(titulo);
         this.titulo.setPrefHeight(85);
@@ -156,6 +169,7 @@ public class AlbumListCell extends ListCell<Album> {
     }
     
     private void atualizaMidias(List<TipoDeMidia> midias){
+        this.midias.getChildren().clear();
         for(TipoDeMidia m : midias){
             Label lblMidia = new Label(m.getDescricao());
             lblMidia.getStyleClass().add("etiqueta");

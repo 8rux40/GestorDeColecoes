@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -68,5 +69,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <ToggleButton fx:id="btnStatus" layoutX="27.0" layoutY="218.0" mnemonicParsing="false" onAction="#onBtnStatusAction" prefHeight="19.0" prefWidth="132.0" selected="true" styleClass="button" text="Ouvido" />
    </children>
 </AnchorPane>

@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javax.swing.JOptionPane;
 import model.dao.AlbumDao;
 import model.dao.DaoFactory;
@@ -91,9 +93,11 @@ public class TestefxController implements Initializable {
     }    
     
     private void gerarItensDaLista(){
+        lvAlbuns.getItems().clear();
         lvAlbuns.setCellFactory(param -> new AlbumListCell());
         lvAlbuns.setPrefHeight(180);
         lvAlbuns.getItems().setAll(carregaListaAlbuns());
+        lvAlbuns.refresh();
     }
     
     
@@ -118,10 +122,18 @@ public class TestefxController implements Initializable {
             */
 //        Util.chamarTela(btnNovoAlbum.getClass().getResource("/view/EditarAlbum.fxml"));
             FXMLLoader loader = new FXMLLoader(btnNovoAlbum.getClass().getResource("/view/EditarAlbum.fxml"));
-            Scene scene = new Scene(loader.load());
             Stage stage = new Stage();
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent t) {
+                    JOptionPane.showMessageDialog(null, "Funcionando");
+                    gerarItensDaLista();
+                }
+            });
+            Scene scene = new Scene(loader.load());
             stage.setScene(scene);
-            stage.showAndWait();
+            stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
+            stage.show();
             JOptionPane.showMessageDialog(null, "testse");
             lvAlbuns.getItems().setAll(carregaListaAlbuns());
         } catch (IOException ex) {
@@ -176,6 +188,7 @@ public class TestefxController implements Initializable {
     @FXML
     private void onFiltroCdClicked(MouseEvent event) {
         ativaDesativaFiltro(cbCd, filtroCd);
+        gerarItensDaLista();
     }
 
     @FXML

@@ -16,10 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.dao.DaoFactory;
 import model.dao.MidiasDisponiveisDao;
 import model.dao.TipoDeMidiaDao;
@@ -62,6 +64,8 @@ public class EditarAlbumController implements Initializable {
     private TextField txtAno;
 
     private Album albumSelecionado;
+    @FXML
+    private ToggleButton btnStatus;
     /**
      * Initializes the controller class.
      */
@@ -71,6 +75,7 @@ public class EditarAlbumController implements Initializable {
         if (a != null) {
             preencheInformacoes(a);
         }
+        
     }    
     
     private void preencheInformacoes(Album a){
@@ -98,7 +103,10 @@ public class EditarAlbumController implements Initializable {
             }
         }
         capa.setImage(a.getCapa());
+        btnStatus.selectedProperty().set(a.getStatus() == 1);
     }
+    
+   
     
     private void atualizaCapaAtual(File f){
         Image img;
@@ -122,9 +130,9 @@ public class EditarAlbumController implements Initializable {
             a.setArtista(txtArtista.getText());
             a.setAnoLancamento(Integer.parseInt(txtAno.getText()));
             a.setTitulo(txtTitulo.getText());
-            a.setStatus(1); // VER DEPOIS
             a.setId(albumSelecionado.getId());
             a.setStrCapa(albumSelecionado.getStrCapa()); // VER DEPOIS
+            a.setStatus(btnStatus.isSelected() ? 1 : 0);
             
             MidiasDisponiveisDao dao = DaoFactory.createMidiasDisponiveisDao();
             TipoDeMidiaDao tdmDao = DaoFactory.createTipoDeMidiaDao();
@@ -186,7 +194,13 @@ public class EditarAlbumController implements Initializable {
     
     private void fechaJanela(){
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close();
+        stage.fireEvent(new WindowEvent(btnCancelar.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST));
+        //stage.close();
+    }
+
+    @FXML
+    private void onBtnStatusAction(ActionEvent event) {
+        albumSelecionado.setStatus(btnStatus.isSelected() ? 1 : 0);
     }
     
 }

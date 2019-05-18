@@ -58,3 +58,7 @@
 .check-box:selected .box {
     -fx-background-color: #fe2280;
 }
+
+.toggle-button:selected {
+    -fx-background-color: #fe2280;
+}
