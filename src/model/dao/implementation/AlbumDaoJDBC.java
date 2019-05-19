@@ -1,5 +1,6 @@
 package model.dao.implementation;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -7,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.Image;
 import model.dao.AlbumDao;
 import static model.dao.implementation.TipoDeMidiaDaoJDBC.instantiateTipoDeMidia;
 import model.database.DB;
@@ -33,13 +35,15 @@ public class AlbumDaoJDBC implements AlbumDao{
         try {
             st = conn.prepareStatement(
                 "INSERT INTO Album "
-                + " (id, titulo, artista, anoLancamento, capa, status)"
-                + "VALUES (?,?,?,?,?,?); ",
+                + " (titulo, artista, anoLancamento, capa, status)"
+                + "VALUES (?,?,?,?,?); ",
                 Statement.RETURN_GENERATED_KEYS
             );
+            System.out.println("DAO Path: "+a.getCapa().getPath());
+            System.out.println("DAO Absolute: "+a.getCapa().getAbsolutePath());
             st.setString(1, a.getTitulo());
             st.setString(2, a.getArtista());
-            st.setString(4, a.getStrCapa());
+            st.setString(4, a.getCapa().getPath());
             st.setInt(3, a.getAnoLancamento());
             st.setInt(5, a.getStatus());
             
@@ -72,7 +76,7 @@ public class AlbumDaoJDBC implements AlbumDao{
             );
             st.setString(1, a.getTitulo());
             st.setString(2, a.getArtista());
-            st.setString(4, a.getStrCapa());
+            st.setString(4, a.getCapa().getPath());
             st.setInt(3, a.getAnoLancamento());
             st.setInt(5, a.getStatus());
             st.setInt(6, a.getId());
@@ -157,10 +161,9 @@ public class AlbumDaoJDBC implements AlbumDao{
             rs.getString("titulo"),
             rs.getString("artista"),
             rs.getInt("anoLancamento"),
-            rs.getString("capa"),
+            new File(rs.getString("capa")),
             rs.getInt("status")
         );
     }
-    
     
 }

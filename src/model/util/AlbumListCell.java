@@ -2,7 +2,12 @@ package model.util;
 
 import controller.TestefxController;
 import controller.Util;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -93,7 +98,7 @@ public class AlbumListCell extends ListCell<Album> {
                 atualizaCapa(item.getCapa());
                 //imgCapa.setImage(item.getCapa());
             } else {
-                atualizaCapa(new Image("/view/img/album-256.png"));
+                atualizaCapa(new File("/view/img/album-256.png"));
                 //imgCapa.setImage(new Image("/view/img/album-256.png"));
             }
             atualizaTitulo(item.getTitulo());
@@ -137,11 +142,16 @@ public class AlbumListCell extends ListCell<Album> {
         Util.chamarTela(getClass().getResource("/view/EditarAlbum.fxml"));
     }
 
-    private void atualizaCapa(Image image) {
-        imgCapa.setImage(image);
-        imgCapa.setFitWidth(150);
-        imgCapa.setFitHeight(150);
-        imgCapa.getStyleClass().add("album-capa");
+    private void atualizaCapa(File f) {
+        try {
+            Image image = new Image(new FileInputStream(f));
+            imgCapa.setImage(image);
+            imgCapa.setFitWidth(150);
+            imgCapa.setFitHeight(150);
+            imgCapa.getStyleClass().add("album-capa");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AlbumListCell.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void atualizaStatus(Integer status){

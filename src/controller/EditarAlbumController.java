@@ -62,6 +62,8 @@ public class EditarAlbumController implements Initializable {
     private Button btnCancelar;
     @FXML
     private TextField txtAno;
+    
+    private File fCapa;
 
     private Album albumSelecionado;
     @FXML
@@ -79,31 +81,36 @@ public class EditarAlbumController implements Initializable {
     }    
     
     private void preencheInformacoes(Album a){
-        albumSelecionado = a;
-        txtArtista.setText(a.getArtista());
-        txtTitulo.setText(a.getTitulo());
-        txtAno.setText(String.format("%d", a.getAnoLancamento()));
-        for (TipoDeMidia tdm : DaoFactory.createMidiasDisponiveisDao().findTipoDeMidiaByAlbum(a)){
-            switch(tdm.getId()){
-                case TipoDeMidia.CD:{
-                    cbCd.setSelected(true);
-                } break;
-                case TipoDeMidia.DVD:{
-                    cbDvd.setSelected(true);
-                } break;
-                case TipoDeMidia.BluRay:{
-                    cbBluray.setSelected(true);
-                } break;
-                case TipoDeMidia.Vinil:{
-                    cbVinil.setSelected(true);
-                } break;
-                case TipoDeMidia.K7:{
-                    cbK7.setSelected(true);
-                } break;
+        try {
+            albumSelecionado = a;
+            txtArtista.setText(a.getArtista());
+            txtTitulo.setText(a.getTitulo());
+            txtAno.setText(String.format("%d", a.getAnoLancamento()));
+            for (TipoDeMidia tdm : DaoFactory.createMidiasDisponiveisDao().findTipoDeMidiaByAlbum(a)){
+                switch(tdm.getId()){
+                    case TipoDeMidia.CD:{
+                        cbCd.setSelected(true);
+                    } break;
+                    case TipoDeMidia.DVD:{
+                        cbDvd.setSelected(true);
+                    } break;
+                    case TipoDeMidia.BluRay:{
+                        cbBluray.setSelected(true);
+                    } break;
+                    case TipoDeMidia.Vinil:{
+                        cbVinil.setSelected(true);
+                    } break;
+                    case TipoDeMidia.K7:{
+                        cbK7.setSelected(true);
+                    } break;
+                }
             }
+            fCapa = a.getCapa();
+            capa.setImage(new Image(new FileInputStream(fCapa)));
+            btnStatus.selectedProperty().set(a.getStatus() == 1);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        capa.setImage(a.getCapa());
-        btnStatus.selectedProperty().set(a.getStatus() == 1);
     }
     
    
@@ -118,6 +125,7 @@ public class EditarAlbumController implements Initializable {
         try {
             img = new Image(new FileInputStream(f.getAbsolutePath()));
             capa.setImage(img);
+            fCapa = f;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -133,6 +141,7 @@ public class EditarAlbumController implements Initializable {
             a.setId(albumSelecionado.getId());
             a.setStrCapa(albumSelecionado.getStrCapa()); // VER DEPOIS
             a.setStatus(btnStatus.isSelected() ? 1 : 0);
+            a.setCapa(fCapa);
             
             MidiasDisponiveisDao dao = DaoFactory.createMidiasDisponiveisDao();
             TipoDeMidiaDao tdmDao = DaoFactory.createTipoDeMidiaDao();

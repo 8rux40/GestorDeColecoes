@@ -1,5 +1,6 @@
 package model.entity;
 
+import java.io.File;
 import java.util.Objects;
 import javafx.scene.image.Image;
 
@@ -15,21 +16,25 @@ public class Album {
     private String titulo;
     private String artista;
     private Integer anoLancamento;
-    private Image capa;
+    private File capa;
     private String strCapa;
     private Integer status;
 
     public Album() {
     }
     
-    public Album(Integer id, String titulo, String artista, Integer anoLancamento, String capa, Integer status) {
+    public Album(Integer id, String titulo, String artista, Integer anoLancamento, File capa, Integer status) {
         this.id = id;
         this.titulo = titulo;
         this.artista = artista;
         this.anoLancamento = anoLancamento;
-        this.strCapa = capa;
+        this.capa = capa;
         this.status = status;
-        this.capa = new Image("./view/img/capa/"+capa);
+//        this.capa = new Image("./view/img/capa/"+capa);
+    }
+
+    public void setCapa(File capa) {
+        this.capa = capa;
     }
 
     public Integer getId() {
@@ -81,12 +86,8 @@ public class Album {
         this.anoLancamento = anoLancamento;
     }
 
-    public Image getCapa() {
+    public File getCapa() {
         return capa;
-    }
-
-    public void setCapa(Image capa) {
-        this.capa = capa;
     }
 
     @Override
