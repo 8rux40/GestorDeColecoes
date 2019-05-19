@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -106,7 +108,14 @@ public class EditarAlbumController implements Initializable {
                 }
             }
             fCapa = a.getCapa();
-            capa.setImage(new Image(new FileInputStream(fCapa)));
+            Path currentRelativePath = Paths.get("");
+            String str = String.format(
+                "%s%s%s", 
+                currentRelativePath.toAbsolutePath().toString(),
+                "/src/view/img/capa/",
+                fCapa.getName()
+            );
+            capa.setImage(new Image(new FileInputStream(str)));
             btnStatus.selectedProperty().set(a.getStatus() == 1);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,6 +125,7 @@ public class EditarAlbumController implements Initializable {
    
     
     private void atualizaCapaAtual(File f){
+        f = NovoAlbumController.salvarImagem(f);
         Image img;
         try {
             System.out.println(f.getCanonicalPath());

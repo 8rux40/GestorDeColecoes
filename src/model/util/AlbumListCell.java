@@ -5,6 +5,8 @@ import controller.Util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,7 +146,14 @@ public class AlbumListCell extends ListCell<Album> {
 
     private void atualizaCapa(File f) {
         try {
-            Image image = new Image(new FileInputStream(f));
+            Path currentRelativePath = Paths.get("");
+            String str = String.format(
+                "%s%s%s", 
+                currentRelativePath.toAbsolutePath().toString(),
+                "/src/view/img/capa/",
+                f.getName()
+            );
+            Image image = new Image(new FileInputStream(str));
             imgCapa.setImage(image);
             imgCapa.setFitWidth(150);
             imgCapa.setFitHeight(150);

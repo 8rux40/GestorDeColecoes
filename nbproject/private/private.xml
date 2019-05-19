@@ -6,11 +6,11 @@
             <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/controller/NovoAlbumController.java</file>
             <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/model/dao/implementation/AlbumDaoJDBC.java</file>
             <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/view/NovoAlbum.fxml</file>
-            <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/view/EditarAlbum.fxml</file>
             <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/model/entity/Album.java</file>
             <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/controller/TestefxController.java</file>
             <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/model/entity/TipoDeMidia.java</file>
             <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/controller/EditarAlbumController.java</file>
+            <file>file:/home/btardin/NetBeansProjects/GestorDeColecoes/src/model/util/AlbumListCell.java</file>
         </group>
     </open-files>
 </project-private>

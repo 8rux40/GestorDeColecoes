@@ -22,6 +22,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -69,6 +70,8 @@ public class NovoAlbumController implements Initializable {
     private ToggleButton btnStatus;
     
     private File fCapa;
+    @FXML
+    private ImageView ivCapa;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -88,14 +91,17 @@ public class NovoAlbumController implements Initializable {
         aDao.insert(a);
     }
     
-    public File salvarImagem(File imgFile) {
+    protected static File salvarImagem(File imgFile) {
         try {
             BufferedImage bImage = ImageIO.read(imgFile);
             System.out.println("Pegando imagem: "+imgFile.getAbsolutePath());
-            System.out.println("Salvando em: \\imagens\\"+imgFile.getName());
             Path currentRelativePath = Paths.get("");
-            String str = currentRelativePath.toAbsolutePath().toString();
-            str += "/src/view/img/capa/" + imgFile.getName();
+            String str = String.format(
+                "%s%s%s", 
+                currentRelativePath.toAbsolutePath().toString(),
+                "/src/view/img/capa/",
+                imgFile.getName().replaceAll(" ", "-")
+            );
             ImageIO.write(bImage, "jpg", new File(str));
             return new File(str);
         } catch (IOException e) {
@@ -107,7 +113,7 @@ public class NovoAlbumController implements Initializable {
     
     @FXML
     private void onBtnUploadAction(ActionEvent event) {
-        /*
+        /*sagu
             CAIXA DE DIALOGO PARA INSERIR A IMAGEM DE CAPA
         */
         FileChooser fc = new FileChooser();
@@ -122,9 +128,9 @@ public class NovoAlbumController implements Initializable {
         f = salvarImagem(f);
         if (f != null){
             try {
-                
                 fCapa = f;
                 capa = new Image(new FileInputStream(fCapa));
+                ivCapa.setImage(capa);
                 System.out.println(capa);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(NovoAlbumController.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,6 +157,7 @@ public class NovoAlbumController implements Initializable {
 
     @FXML
     private void onBtnCancelarAction(ActionEvent event) {
+        fechaJanela();
     }
 
     @FXML

@@ -43,7 +43,7 @@ public class AlbumDaoJDBC implements AlbumDao{
             System.out.println("DAO Absolute: "+a.getCapa().getAbsolutePath());
             st.setString(1, a.getTitulo());
             st.setString(2, a.getArtista());
-            st.setString(4, a.getCapa().getPath());
+            st.setString(4, a.getCapa().getName());
             st.setInt(3, a.getAnoLancamento());
             st.setInt(5, a.getStatus());
             
@@ -76,7 +76,7 @@ public class AlbumDaoJDBC implements AlbumDao{
             );
             st.setString(1, a.getTitulo());
             st.setString(2, a.getArtista());
-            st.setString(4, a.getCapa().getPath());
+            st.setString(4, a.getCapa().getName());
             st.setInt(3, a.getAnoLancamento());
             st.setInt(5, a.getStatus());
             st.setInt(6, a.getId());
@@ -161,7 +161,7 @@ public class AlbumDaoJDBC implements AlbumDao{
             rs.getString("titulo"),
             rs.getString("artista"),
             rs.getInt("anoLancamento"),
-            new File(rs.getString("capa")),
+            new File("/view/img/capa/"+rs.getString("capa")),
             rs.getInt("status")
         );
     }
