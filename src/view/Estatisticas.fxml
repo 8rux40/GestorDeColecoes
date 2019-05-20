@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="443.0" prefWidth="691.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EstatisticasController">
+    <stylesheets>
+        <URL value="@NovoAlbum.css" />
+    </stylesheets>
+   <children>
+      <PieChart fx:id="grafico" layoutX="14.0" layoutY="70.0" prefHeight="297.0" prefWidth="371.0" />
+      <Label layoutX="600.0" layoutY="61.0" text="90%" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="24.0" text="Tipos de Mídia" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="385.0" layoutY="24.0" text="Álbuns ouvidos:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <ProgressBar layoutX="385.0" layoutY="60.0" prefHeight="20.0" prefWidth="209.0" progress="0.73" />
+      <Label layoutX="30.0" layoutY="393.0" text="Total de álbuns cadastrados:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalAlbuns" layoutX="399.0" layoutY="396.0" style="-fx-background-color: #fe2280; -fx-padding: 4;" text="18" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOuvidos" layoutX="591.0" layoutY="26.0" style="-fx-background-color: #fe2280; -fx-padding: 4;" text="18" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="385.0" layoutY="105.0" text="Total de CDs:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalCD" layoutX="559.0" layoutY="107.0" style="-fx-background-color: black; -fx-padding: 4;" text="18" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="385.0" layoutY="150.0" text="Total de DVDs:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalDVD" layoutX="578.0" layoutY="152.0" style="-fx-background-color: black; -fx-padding: 4;" text="18" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="385.0" layoutY="192.0" text="Total de BluRays:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalBluray" layoutX="610.0" layoutY="194.0" style="-fx-background-color: black; -fx-padding: 4;" text="18" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="386.0" layoutY="234.0" text="Total de Vinis:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalVinil" layoutX="573.0" layoutY="236.0" style="-fx-background-color: black; -fx-padding: 4;" text="18" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="387.0" layoutY="280.0" text="Total de K7s:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalK7" layoutX="559.0" layoutY="282.0" style="-fx-background-color: black; -fx-padding: 4;" text="18" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

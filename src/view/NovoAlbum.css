@@ -62,3 +62,15 @@
 .toggle-button:selected {
     -fx-background-color: #fe2280;
 }
+
+.progress-bar .track{
+    -fx-background-color: rgba(0,0,0,.4);
+}
+
+.progress-bar .bar {
+    -fx-background-color: 
+        #fe2280; /* this line is the background color of the bar */
+   
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.416667em; /* 5 */
+}

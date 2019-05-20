@@ -86,6 +86,8 @@ public class TestefxController implements Initializable {
     private ListView<Album> lvAlbuns;
     
     private static Album albumSelecionado;
+    @FXML
+    private Button btnEstatisticas;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

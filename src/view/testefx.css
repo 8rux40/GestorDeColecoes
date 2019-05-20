@@ -66,10 +66,15 @@
     -fx-padding: 15px;
 }
 
-#btnNovoAlbum:hover {
+#btnNovoAlbum:hover, #btnEstatisticas:hover {
     -fx-border-color: #fe2280;
     -fx-background-color: #fe2280;
-    
+}
+
+#btnEstatisticas {
+    -fx-border-color: black;
+    -fx-background-color: black;
+    -fx-text-fill: white;
 }
 
 .etiqueta {
