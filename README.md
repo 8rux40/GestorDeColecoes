@@ -5,8 +5,8 @@ Trabalho acadêmico da disciplina de POO, que tem como finalidade aprimorar os c
 Desenvolver um sistema gestor de coleções para desktop utilizando as tecnologias mencionadas acima.
 
 ### Checklist
-- [ ] CRUD de itens, incluindo o carregamento e visualização da imagem do item.
-- [ ] Controle e marcação de itens (adquiridos/faltantes/lidos/ouvidos... etc).
+- [x] CRUD de itens, incluindo o carregamento e visualização da imagem do item.
+- [x] Controle e marcação de itens (adquiridos/faltantes/lidos/ouvidos... etc).
 - [ ] Estatística dos itens (% itens adquiridos/faltantes/lidos/ouvidos...).
 
 ### Restrições
