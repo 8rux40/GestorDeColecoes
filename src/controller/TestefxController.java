@@ -119,9 +119,7 @@ public class TestefxController implements Initializable {
          * carregada como capa do álbum
          */
         DaoFactory.createMidiasDisponiveisDao().deleteAllByAlbum(a);
-        System.out.println(a.getCapa());
         DaoFactory.createAlbumDao().delete(a);
-        System.out.println(a.getCapa());
         File capa = new File("src/view/img/capa/"+a.getCapa().getName());
         capa.delete();
     }

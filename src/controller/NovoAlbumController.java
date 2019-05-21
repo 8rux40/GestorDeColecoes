@@ -98,26 +98,31 @@ public class NovoAlbumController implements Initializable {
     protected static File salvarImagem(File imgFile) {
         try {
             BufferedImage bImage = ImageIO.read(imgFile);
-            System.out.println("Pegando imagem: "+imgFile.getAbsolutePath());
             Path currentRelativePath = Paths.get("");
             String str = String.format(
                 "%s%s%s", 
                 currentRelativePath.toAbsolutePath().toString(),
                 "/src/view/img/capa/",
+                '@' + String.valueOf(Math.random()).substring(2, 9),
                 imgFile.getName().replaceAll(" ", "-")
             );
             ImageIO.write(bImage, "jpg", new File(str));
             return new File(str);
         } catch (IOException e) {
-            System.out.println("Exception occured :" + e.getMessage());
+            Util.mostraAlerta(
+                "Erro", 
+                "Um erro ocorreu ao tentar salvar a capa do álbum.", 
+                e.getMessage(), 
+                Alert.AlertType.ERROR
+            );
+            e.printStackTrace();
         }
-        System.out.println("Images were written succesfully.");
         return null;
     }
     
     @FXML
     private void onBtnUploadAction(ActionEvent event) {
-        /*sagu
+        /*
             CAIXA DE DIALOGO PARA INSERIR A IMAGEM DE CAPA
         */
         FileChooser fc = new FileChooser();
@@ -135,9 +140,13 @@ public class NovoAlbumController implements Initializable {
                 fCapa = f;
                 capa = new Image(new FileInputStream(fCapa));
                 ivCapa.setImage(capa);
-                System.out.println(capa);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(NovoAlbumController.class.getName()).log(Level.SEVERE, null, ex);
+                Util.mostraAlerta(
+                    "Erro", 
+                    "Um erro ocorreu ao tentar carregar capa do álbum.", 
+                    ex.getMessage(), 
+                    Alert.AlertType.ERROR
+                );
             }
         }
     }

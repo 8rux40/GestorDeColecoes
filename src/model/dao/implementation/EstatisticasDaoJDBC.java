@@ -55,7 +55,6 @@ public class EstatisticasDaoJDBC implements EstatisticasDao {
             st.setInt(1, tipoDeMidia);
             rs = st.executeQuery();
             while(rs.next()){
-                System.out.println("BD: "+rs.getInt(1));
                 return rs.getInt(1);
             }
             return 0;

@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -128,11 +129,6 @@ public class EditarAlbumController implements Initializable {
         f = NovoAlbumController.salvarImagem(f);
         Image img;
         try {
-            System.out.println(f.getCanonicalPath());
-        } catch (IOException ex) {
-            Logger.getLogger(EditarAlbumController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             img = new Image(new FileInputStream(f.getAbsolutePath()));
             capa.setImage(img);
             fCapa = f;
@@ -168,7 +164,12 @@ public class EditarAlbumController implements Initializable {
             }
             
         } catch (Exception ex){
-            System.out.println(ex.getMessage());
+            Util.mostraAlerta(
+                "Erro", 
+                "Um erro ocorreu ao tentar atualizar álbum.", 
+                ex.getMessage(), Alert.AlertType.ERROR
+            );
+            ex.printStackTrace();
         } finally {
             return a;
         }
@@ -188,10 +189,7 @@ public class EditarAlbumController implements Initializable {
             new FileChooser.ExtensionFilter("JPEG", "*.jpeg")
         );
         File f = fc.showOpenDialog(btnUpload.getScene().getWindow());
-        if (f != null){
-            System.out.println(f);
-            atualizaCapaAtual(f);
-        }
+        if (f != null) atualizaCapaAtual(f);
     }
 
     @FXML
