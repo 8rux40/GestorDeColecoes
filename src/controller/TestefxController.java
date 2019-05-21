@@ -217,5 +217,10 @@ public class TestefxController implements Initializable {
     private void onBtnNovoAlbumAction(ActionEvent event) {
         novoAlbum();
     }
+
+    @FXML
+    private void onBtnEstatisticasAction(ActionEvent event) {
+        Util.chamarTela(getClass().getResource("/view/Estatisticas.fxml"));
+    }
     
 }

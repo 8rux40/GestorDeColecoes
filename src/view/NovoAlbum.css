@@ -74,3 +74,26 @@
     -fx-background-insets: 0, 1, 2;
     -fx-padding: 0.416667em; /* 5 */
 }
+
+.chart-pie {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,.6), 24.5, 0.05, 0, 0);
+}
+
+/* Colors of JavaFX pie chart slices. *//*
+.data0.chart-pie { -fx-pie-color: #ff0033; -fx-border-color: transparent;}
+.data1.chart-pie { -fx-pie-color: #9c3e64; -fx-border-color: transparent;}
+.data2.chart-pie { -fx-pie-color: #d974df; -fx-border-color: transparent;}
+.data3.chart-pie { -fx-pie-color: #d6b7c8; -fx-border-color: transparent;}
+.data4.chart-pie { -fx-pie-color: #bfc7cc; -fx-border-color: transparent;}*/
+
+.data0.chart-pie { -fx-pie-color: #ff71ce; -fx-border-color: transparent;}
+.data1.chart-pie { -fx-pie-color: #01cdfe; -fx-border-color: transparent;}
+.data2.chart-pie { -fx-pie-color: #05ffa1; -fx-border-color: transparent;}
+.data3.chart-pie { -fx-pie-color: #b967ff; -fx-border-color: transparent;}
+.data4.chart-pie { -fx-pie-color: #fffb96; -fx-border-color: transparent;}
+
+/* Pie Chart legend background color and stroke. */
+.chart-legend { -fx-background-color: black; }
+.chart-legend .label {
+    -fx-text-fill: white;
+}

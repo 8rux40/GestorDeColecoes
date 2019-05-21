@@ -1,5 +1,6 @@
 package model.dao;
 
+import model.dao.implementation.EstatisticasDaoJDBC;
 import model.dao.implementation.AlbumDaoJDBC;
 import model.dao.implementation.MidiasDisponiveisDaoJDBC;
 import model.dao.implementation.TipoDeMidiaDaoJDBC;
@@ -22,5 +23,9 @@ public class DaoFactory {
     
     public static MidiasDisponiveisDao createMidiasDisponiveisDao(){
         return new MidiasDisponiveisDaoJDBC(DB.getConnection());
+    }
+    
+    public static EstatisticasDao createEstatisticasDao(){
+        return new EstatisticasDaoJDBC(DB.getConnection());
     }
 }
