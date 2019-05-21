@@ -32,6 +32,7 @@ import model.dao.DaoFactory;
 import model.dao.MidiasDisponiveisDao;
 import model.dao.TipoDeMidiaDao;
 import model.entity.Album;
+import model.entity.MidiasDisponiveis;
 import model.entity.TipoDeMidia;
 
 /**
@@ -89,6 +90,9 @@ public class NovoAlbumController implements Initializable {
         if (cbVinil.isSelected()) midias.add(tdmDao.findById(TipoDeMidia.Vinil));
         if (cbK7.isSelected()) midias.add(tdmDao.findById(TipoDeMidia.K7));
         aDao.insert(a);
+        midias.forEach((midia) -> {
+            dao.insert(new MidiasDisponiveis(a, midia));
+        });
     }
     
     protected static File salvarImagem(File imgFile) {
