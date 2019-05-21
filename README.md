@@ -7,7 +7,7 @@ Desenvolver um sistema gestor de coleções para desktop utilizando as tecnologi
 ### Checklist
 - [x] CRUD de itens, incluindo o carregamento e visualização da imagem do item.
 - [x] Controle e marcação de itens (adquiridos/faltantes/lidos/ouvidos... etc).
-- [ ] Estatística dos itens (% itens adquiridos/faltantes/lidos/ouvidos...).
+- [x] Estatística dos itens (% itens adquiridos/faltantes/lidos/ouvidos...).
 
 ### Restrições
 - Um registro de item deve conter um mínimo de campos relevantes.
