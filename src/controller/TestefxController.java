@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javax.swing.JOptionPane;
@@ -111,10 +113,17 @@ public class TestefxController implements Initializable {
     }
     
     public static void removerAlbum(Album a){
-        /*
-            REMOVER ALBUM DAO
-        */
+        /**
+         * Remove o álbum do banco de dados, juntamente com as mídis disponíveis
+         * relacionadas a ele; Também remove o arquivo de imagem que foi 
+         * carregada como capa do álbum
+         */
+        DaoFactory.createMidiasDisponiveisDao().deleteAllByAlbum(a);
+        System.out.println(a.getCapa());
         DaoFactory.createAlbumDao().delete(a);
+        System.out.println(a.getCapa());
+        File capa = new File("src/view/img/capa/"+a.getCapa().getName());
+        capa.delete();
     }
     
     public void editarAlbum(Album a){
