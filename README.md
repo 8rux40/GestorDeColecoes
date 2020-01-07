@@ -1,5 +1,6 @@
 # GestorDeColecoes
 Trabalho acadêmico da disciplina de POO, que tem como finalidade aprimorar os conhecimentos de Java, JavaFX e SGBD MySQL. 
+![image](https://user-images.githubusercontent.com/17161794/56212561-a5ed4d80-6030-11e9-9a73-d4058838d4eb.png)
 
 ## Objetivo
 Desenvolver um sistema gestor de coleções para desktop utilizando as tecnologias mencionadas acima.
